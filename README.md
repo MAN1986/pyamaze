@@ -8,6 +8,7 @@ The main idea of this module, **pyamaze**, is to assist in creating customizable
 ### Here is the detail on how to use the module
 
 The detailed video can be watched here:
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/McMU-WuJwG0/0.jpg)](https://www.youtube.com/watch?v=McMU-WuJwG0)
 
 ***Generate a Maze:***
