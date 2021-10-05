@@ -8,9 +8,7 @@ The main idea of this module, **pyamaze**, is to assist in creating customizable
 ### Here is the detail on how to use the module
 
 The detailed video can be watched here:
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/McMU-WuJwG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
- </p>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/McMU-WuJwG0/0.jpg)](https://www.youtube.com/watch?v=McMU-WuJwG0)
 
 ***Generate a Maze:***
 To simply generate a maze, you need to create the maze object and then apply the ***CreateMaze*** function. The last statement will be applying the function ***run*** to run the simulation.
