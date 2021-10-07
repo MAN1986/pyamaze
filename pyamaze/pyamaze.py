@@ -357,6 +357,8 @@ class maze:
         loadMaze--> Provide the CSV file to generate a desried maze
         theme--> Dark or Light
         '''
+        _stack=[]
+        _closed=[]
         self.theme=theme
         self._goal=(x,y)
         if(isinstance(theme,str)):
@@ -476,13 +478,13 @@ class maze:
             while len(_stack) > 0:
                 cell = []
                 bias+=1
-                if(x , y +1) not in maze._closed and (x , y+1) in self.grid:
+                if(x , y +1) not in _closed and (x , y+1) in self.grid:
                     cell.append("E")
-                if (x , y-1) not in maze._closed and (x , y-1) in self.grid:
+                if (x , y-1) not in _closed and (x , y-1) in self.grid:
                     cell.append("W")
-                if (x+1, y ) not in maze._closed and (x+1 , y ) in self.grid:
+                if (x+1, y ) not in _closed and (x+1 , y ) in self.grid:
                     cell.append("S")
-                if (x-1, y ) not in maze._closed and (x-1 , y) in self.grid:
+                if (x-1, y ) not in _closed and (x-1 , y) in self.grid:
                     cell.append("N") 
                 if len(cell) > 0:    
                     if pattern is not None and pattern.lower()=='h' and bias<=biasLength:
