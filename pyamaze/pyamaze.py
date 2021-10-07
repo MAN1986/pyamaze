@@ -280,8 +280,6 @@ class maze:
     '''
     This is the main class to create maze.
     '''
-    _stack = []
-    _closed = []
     def __init__(self,rows=10,cols=10):
         '''
         rows--> No. of rows of the maze
@@ -466,8 +464,8 @@ class maze:
             return fwdPath
         # if maze is to be generated randomly
         if not loadMaze:
-            maze._stack.append((x,y))
-            maze._closed.append((x,y))
+            _stack.append((x,y))
+            _closed.append((x,y))
             biasLength=2 # if pattern is 'v' or 'h'
             if(pattern is not None and pattern.lower()=='h'):
                 biasLength=max(self.cols//10,2)
@@ -475,7 +473,7 @@ class maze:
                 biasLength=max(self.rows//10,2)
             bias=0
 
-            while len(maze._stack) > 0:
+            while len(_stack) > 0:
                 cell = []
                 bias+=1
                 if(x , y +1) not in maze._closed and (x , y+1) in self.grid:
@@ -502,32 +500,32 @@ class maze:
                         self._Open_East(x,y)
                         self.path[x, y+1] = x, y
                         y = y + 1
-                        maze._closed.append((x, y))
-                        maze._stack.append((x, y))
+                        _closed.append((x, y))
+                        _stack.append((x, y))
 
                     elif current_cell == "W":
                         self._Open_West(x, y)
                         self.path[x , y-1] = x, y
                         y = y - 1
-                        maze._closed.append((x, y))
-                        maze._stack.append((x, y))
+                        _closed.append((x, y))
+                        _stack.append((x, y))
 
                     elif current_cell == "N":
                         self._Open_North(x, y)
                         self.path[(x-1 , y)] = x, y
                         x = x - 1
-                        maze._closed.append((x, y))
-                        maze._stack.append((x, y))
+                        _closed.append((x, y))
+                        _stack.append((x, y))
 
                     elif current_cell == "S":
                         self._Open_South(x, y)
                         self.path[(x+1 , y)] = x, y
                         x = x + 1
-                        maze._closed.append((x, y))
-                        maze._stack.append((x, y))
+                        _closed.append((x, y))
+                        _stack.append((x, y))
 
                 else:
-                    x, y = maze._stack.pop()
+                    x, y = _stack.pop()
 
             ## Multiple Path Loops
             if loopPercent!=0:
