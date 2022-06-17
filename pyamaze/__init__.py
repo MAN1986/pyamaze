@@ -1,1 +1,1 @@
-from pybmaze.pybmaze import maze,agent,COLOR,textLabel
+from pyamaze.pyamaze import maze,agent,COLOR,textLabel
