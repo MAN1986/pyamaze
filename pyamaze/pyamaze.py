@@ -20,6 +20,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Make some changes on the build of Muhamma Ahsan Naeem
 """
 
 import random,datetime,csv,os
@@ -43,8 +45,8 @@ class COLOR(Enum):
     red=('red3','tomato')
     cyan=('cyan4','cyan4')
     green=('green4','pale green')
-    blue=('DeepSkyBlue4','DeepSkyBlue2')
-    yellow=('yellow2','yellow2')
+    blue=('DeepSkyBlue2','DeepSkyBlue4')
+    yellow=('yellow2','yellow4')
 
 class agent:
     '''
@@ -251,15 +253,26 @@ class textLabel:
     '''
     This class is to create Text Label to show different results on the window.
     '''
-    def __init__(self,parentMaze,title,value):
+    def __init__(self,parentMaze,title,value,position,dim=(150,30),font_size=18):
         '''
         parentmaze-->   The maze on which Label will be displayed.
         title-->        The title of the value to be displayed
         value-->        The value to be displayed
+        # Rezoan Ahmed Abir
+        # email : ahmedabir.rez@gmail.com
+        position --> Position of the Label
+        dim --> dimension-> width,height of the Label
+        font_size --> custom font size 
         '''
+
         self.title=title
         self._value=value
+        self.font_size = font_size
         self._parentMaze=parentMaze
+        self.x = position[0]
+        self.y = position[1]
+        self.width = dim[0]
+        self.height = dim[1]
         # self._parentMaze._labels.append(self)
         self._var=None
         self.drawLabel()
@@ -272,9 +285,9 @@ class textLabel:
         self._var.set(f'{self.title} : {v}')
     def drawLabel(self):
         self._var = StringVar()
-        self.lab = Label(self._parentMaze._canvas, textvariable=self._var, bg="white", fg="black",font=('Helvetica bold',12),relief=RIDGE)
+        self.lab = Label(self._parentMaze._canvas, textvariable=self._var, bg="white", fg="black",font=('Century Gothic',self.font_size),relief=RIDGE)
         self._var.set(f'{self.title} : {self.value}')
-        self.lab.pack(expand = True,side=LEFT,anchor=NW)
+        self.lab.place(x=self.x,y=self.y,width=self.width,height=self.height)
 
 class maze:
     '''
@@ -619,14 +632,17 @@ class maze:
         
         self._LabWidth=26 # Space from the top for Labels
         self._win=Tk()
-        self._win.state('zoomed')
-        self._win.title('PYTHON MAZE WORLD by Learning Orbis')
-        
+        # Rezoan Ahmed Abir
+        # email : ahmedabir.rez@gmail.com
+        ## for linux distros the state must be in "normal" or "iconic"
+        ## for window the state can be "zoomed"
+        self._win.state('normal')
+        self._win.title('Path Finding In A MAZE (A Visual Illustration of Search Algorithms)')
         scr_width=self._win.winfo_screenwidth()
         scr_height=self._win.winfo_screenheight()
         self._win.geometry(f"{scr_width}x{scr_height}+0+0")
         self._canvas = Canvas(width=scr_width, height=scr_height, bg=theme.value[0]) # 0,0 is top left corner
-        self._canvas.pack(expand=YES, fill=BOTH)
+        self._canvas.pack(expand=YES,fill=BOTH)
         # Some calculations for calculating the width of the maze cell
         k=3.25
         if self.rows>=95 and self.cols>=95:
